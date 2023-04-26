@@ -1,0 +1,1 @@
+[["POST","api/register"],["POST","api/login"],["POST","api/logout"]]
