@@ -57,3 +57,17 @@ const port = process.env.PORT || 3001;
 app.listen(port, keys.ipAddress, () =>
   console.log(`Server is running on ${port}`)
 );
+
+// Production Code
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+  app.use(express.static(path.resolve(__dirname, 'client2', 'build')));
+  app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client2', 'build', 'index.html'),function (err) {
+          if(err) {
+              res.status(500).send(err)
+          }
+      });
+  })
+}
+
